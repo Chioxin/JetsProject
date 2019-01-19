@@ -14,4 +14,10 @@ public class Fighter extends Jet implements CombatReady {
 		System.out.println(getModel() + "'s engines roar to life and the plane zooms off the launch strip!");
 	}
 
+	@Override
+	public void fight() {
+		System.out.println(getModel() + " is preparing to engage!");
+	}
+	
+
 }

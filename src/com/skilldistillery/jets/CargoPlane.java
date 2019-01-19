@@ -14,4 +14,9 @@ public class CargoPlane extends Jet implements CargoCarrier {
 		System.out.println(getModel() + "'s engines rumble to life, and the plane lifts off the launch pad!");
 	}
 
+	@Override
+	public void loadCargo() {
+		System.out.println(getModel() + " is loading cargo...");
+	}
+
 }

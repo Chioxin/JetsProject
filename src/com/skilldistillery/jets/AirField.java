@@ -134,18 +134,27 @@ public class AirField {
 
 	public void flyAllJets() {
 		for (Jet jet : jets) {
-			if (jet instanceof Jet)
+			if (jet instanceof Jet) {
 				jet.fly();
+			}
 		}
-		System.out.println("<=======  All jets have been taken out for a spin!  =======>");
-		System.out.println();
 	}
 	
 	public void loadCargoPlanes() {
+		for (Jet jet : jets) {
+			if (jet instanceof CargoCarrier) {
+				((CargoCarrier) jet).loadCargo();
+			}
+		}
 		
 	}
 	
 	public void fightersDogFight() {
+		for (Jet jet : jets) {
+			if (jet instanceof CombatReady) {
+				((CombatReady) jet).fight();
+			}
+		}
 		
 	}
 

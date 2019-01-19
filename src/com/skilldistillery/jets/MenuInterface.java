@@ -39,7 +39,10 @@ public class MenuInterface {
 					enterWhenDone();
 					break;
 				case 2:
+					System.out.println();
 					myAirField.flyAllJets();
+					System.out.println("*****  All jets have been taken out for a spin  *****>");
+					System.out.println();
 					break;
 				case 3:
 					System.out.println();
@@ -54,8 +57,16 @@ public class MenuInterface {
 					System.out.println();
 					break;
 				case 5:
+					System.out.println();
+					myAirField.loadCargoPlanes();
+					System.out.println("***** All cargo planes loaded *****");
+					System.out.println();
 					break;
 				case 6:
+					System.out.println();
+					myAirField.fightersDogFight();
+					System.out.println("***** All fighters have battled it out *****");
+					System.out.println();
 					break;
 				case 7:
 					break;
