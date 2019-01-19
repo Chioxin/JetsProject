@@ -42,8 +42,16 @@ public class MenuInterface {
 					myAirField.flyAllJets();
 					break;
 				case 3:
+					System.out.println();
+					System.out.println("*****  This jet has the most speed *****");
+					displayJet(myAirField.getFastestJet());
+					System.out.println();
 					break;
 				case 4:
+					System.out.println();
+					System.out.println("*****  This jet has the longest range  *****");
+					displayJet(myAirField.getLongestRangeJet());
+					System.out.println();
 					break;
 				case 5:
 					break;
@@ -82,11 +90,15 @@ public class MenuInterface {
 
 		return airField;
 	}
+	
+	public void displayJet(Jet j) {
+		System.out.println("Model: " + j.getModel() + " Speed: " + j.getSpeed() + " Range: " + j.getRange() + " Price: " + j.getPrice());
+	}
 
 	public void printDivider() {
-		System.out.println("--------------------        \\");
-		System.out.println("    ******************  >=======>");
-		System.out.println("--------------------        /");
+		System.out.println("--------------------      \\");
+		System.out.println("    ******************  >======>");
+		System.out.println("--------------------      /");
 	}
 
 	private void enterWhenDone() {
