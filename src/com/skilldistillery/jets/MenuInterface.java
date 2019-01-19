@@ -39,6 +39,7 @@ public class MenuInterface {
 					enterWhenDone();
 					break;
 				case 2:
+					myAirField.flyAllJets();
 					break;
 				case 3:
 					break;
@@ -92,5 +93,5 @@ public class MenuInterface {
 		System.out.println("Press N and Enter to move on.");
 		String dump = kb.next();
 	}
-
+	
 }

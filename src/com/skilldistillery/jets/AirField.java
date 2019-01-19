@@ -93,6 +93,15 @@ public class AirField {
 		int num = (int)(Math.random() * arr.length);
 		return arr[num];
 	}
+	
+	public void flyAllJets() {
+		for (Jet jet : jets) {
+			if (jet instanceof Jet)
+				jet.fly();
+		}
+		System.out.println("<=======  All jets have been taken out for a spin!  =======>");
+		System.out.println();
+	}
 
 	public void displayAirfield() {
 		for (int i = 0; i < jets.length; i++) {
