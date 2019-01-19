@@ -1,10 +1,22 @@
 package com.skilldistillery.jets;
 
+import java.util.Scanner;
+
 public class JetsApplication {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Scanner kb = new Scanner(System.in);
+		MenuInterface myMenu = new MenuInterface(kb);
+		AirField myAirField = myMenu.createAirFieldObj();
+//		myAirField.displayAirfield();
+		boolean quitProgram;
+		
+		do {
+		quitProgram = myMenu.mainMenu(myAirField);
+		} while (!quitProgram);
+		
+		kb.close();
+		
 	}
-
+	
 }
