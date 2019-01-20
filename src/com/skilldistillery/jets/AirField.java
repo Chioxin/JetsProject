@@ -7,7 +7,7 @@ public class AirField {
 	public AirField(Jet[] jets) {
 		super();
 		this.jets = jets;
-
+		
 		this.jets[0] = new Fighter("F-15 Eagle", 1000, 5000, 10_000_000);
 		this.jets[1] = new Fighter("F-22 Raptor", 1600, 7500, 23_000_000);
 		this.jets[2] = new Fighter("F-14 Tomcat", 1000, 5000, 15_000_000);

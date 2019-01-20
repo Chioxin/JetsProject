@@ -36,6 +36,7 @@ public class MenuInterface {
 			
 			switch (input) {
 				case 1:
+					graphicAirField(myAirField);
 					displayAirfield(myAirField.getJets());
 					enterWhenDone();
 					break;
@@ -92,12 +93,12 @@ public class MenuInterface {
 		int input;
 
 		do {
-			System.out.print("How big is your airport? (5 - 20): ");
+			System.out.print("How big is your airport? (5 - 10): ");
 			input = kb.nextInt();
-			if (input < 5 || input > 20) {
+			if (input < 5 || input > 10) {
 				System.out.println("\tInvalid input!!! ");
 			}
-		} while (input < 5 || input > 20);
+		} while (input < 5 || input > 10);
 
 		Jet[] jets = new Jet[input];
 
@@ -125,6 +126,7 @@ public class MenuInterface {
 		for (int i = 0; i < jArr.length; i++) {
 			Jet jet = jArr[i];
 			if (jet != null) {
+				System.out.print(i + 1 + "). ");
 				displayJet(jet);
 			} else {
 				System.out.println(i + 1 + "). EMPTY");
@@ -146,17 +148,17 @@ public class MenuInterface {
 		
 		System.out.print("What is the Model Name? >> ");
 		model = kb.next();
+		System.out.println("Is the " + model + " a:");
+		System.out.println("\t1.) Fighter");
+		System.out.println("\t2.) Cargo Carrier");
+		System.out.print("Enter either 1, or 2. >> ");
+		planeType = kb.nextInt();
 		System.out.print("How fast is the " + model + "? >> ");
 		speed = kb.nextDouble();
 		System.out.print("How far can the " + model + " fly? >> ");
 		range = kb.nextInt();
 		System.out.print("How much is the " + model + "'s price? >> ");
 		price = kb.nextLong();
-		System.out.println("Is the " + model + " a:");
-		System.out.println("\t1.) Fighter");
-		System.out.println("\t2.) Cargo Carrier");
-		System.out.print("Enter either 1, or 2. >> ");
-		planeType = kb.nextInt();
 		
 		
 		boolean inputInvalid;
@@ -172,7 +174,7 @@ public class MenuInterface {
 				myAirField.addJet(c);
 				break;
 			default:
-				System.out.println("Please enter (1) for Fighter, or (2) for Cargo Carrier. >> ");
+				System.out.print("Please enter (1) for Fighter, or (2) for Cargo Carrier. >> ");
 				planeType = kb.nextInt();
 				inputInvalid = true;
 				break;
@@ -182,4 +184,164 @@ public class MenuInterface {
 		System.out.println("*****  Added Jet " + model + " to the fleet!  *****");
 	}
 	
+//	
+//	
+//  ANYTHING BELOW THIS DIVIDER IS FOR THE CONTRUCTION METHODS TO DISPLAY
+//	THE AIR FIELD IN ASCII!
+//	
+//	STRETCH GOAL
+//	
+//	
+	
+	private void graphicAirField(AirField myAirField) {
+		int numSpots;
+		Jet[] jArr = myAirField.getJets();
+		if (jArr.length%2 == 0) {  //Need even number of spots to print a proper air field.
+			numSpots = jArr.length;
+		} else {
+			numSpots = jArr.length + 1;
+		}
+		
+		for (int i = 0; i < numSpots; i += 2) { //Jumping by 2, because we need to start at even number to print that row of 2 planes.
+			
+			if (i+1 >= jArr.length) {
+				buildSpot(jArr, i, true);
+			} else {
+				buildSpot(jArr, i, false);
+			}
+		}
+		buildDivder();
+		System.out.println();
+	}
+	
+	private void buildSpot(Jet[] jArr, int counter, boolean blockSpot) {
+		String top = "";
+		String mid = "";
+		String bot = ""; //Set strings to empty.
+
+		buildDivder();
+		top += buildLeftPortTop(jArr[counter]);
+		mid += buildLeftPortMid(jArr[counter]);
+		bot += buildLeftPortBot(jArr[counter]);
+		top += buildMiddleStripeTop();
+		mid += buildMiddleStripeMid();
+		bot += buildMiddleStripeBot();
+		if (blockSpot) {
+			top += "   X X X X X X |";
+			mid += "  X-- X-- X-- X|";
+			bot += "   X X X X X X |";
+		} else {
+			top += buildRightPortTop(jArr[counter+1]);
+			mid += buildRightPortMid(jArr[counter+1]);
+			bot += buildRightPortBot(jArr[counter+1]);
+		}
+		System.out.println(top);
+		System.out.println(mid);
+		System.out.println(bot);
+		
+	}
+	
+	private void buildDivder() {
+		System.out.println("|---------------         ---------------|");
+	}
+	
+	private String buildMiddleStripeTop() {
+		return "         ";
+	}	
+	private String buildMiddleStripeMid() {
+		return "    |    ";
+	}	
+	private String buildMiddleStripeBot() {
+		return "         ";
+	}	
+	
+	private String buildLeftPortTop(Jet j) {
+		if (j instanceof CargoPlane) {
+			return "|   //          ";
+		} else if (j instanceof Fighter) {
+			return "|    /          ";
+		} else { //Spot is empty.
+			return "|               ";
+		}
+	}
+	private String buildLeftPortMid(Jet j) {
+		if (j instanceof CargoPlane) {
+			return "|<=====<  " + shortenJetNameLeft(j) + " ";
+		} else if (j instanceof Fighter) {
+			return "| -----<  " + shortenJetNameLeft(j) + " ";
+		} else { //Spot is empty.
+			return "|  --  --  --   ";
+		}
+	}
+	private String buildLeftPortBot(Jet j) {
+		if (j instanceof CargoPlane) {
+			return "|   \\\\          ";
+		} else if (j instanceof Fighter) {
+			return "|    \\          ";
+		} else { //Spot is empty.
+			return "|               ";
+		}
+	}
+	
+	private String buildRightPortTop(Jet j) {
+		if (j instanceof CargoPlane) {
+			return "          \\\\   |";
+		} else if (j instanceof Fighter) {
+			return "          \\    |";
+		} else { //Spot is empty.
+			return "               |";
+		}	
+	}
+	private String buildRightPortMid(Jet j) {
+		if (j instanceof CargoPlane) {
+			return "  " + shortenJetNameRight(j) + " >=====>|";
+		} else if (j instanceof Fighter) {
+			return "  " + shortenJetNameRight(j) + " >----- |";
+		} else { //Spot is empty.
+			return "   --  --  --  |";
+		}	
+	}
+	private String buildRightPortBot(Jet j) {
+		if (j instanceof CargoPlane) {
+			return "          //   |";
+		} else if (j instanceof Fighter) {
+			return "          /    |";
+		} else { //Spot is empty.
+			return "               |";
+		}
+	}
+	
+	private String shortenJetNameLeft(Jet j) {
+		String model = j.getModel();
+		String returnName = "";
+		
+		for (int i = 0; i < 5; i++) {
+			if (model.length() < i) { // making sure we don't access a position outside of the given string.
+				returnName += " ";
+			} else {
+				returnName += model.charAt(i);
+			}
+		}
+		return returnName;
+	}
+	
+	private String shortenJetNameRight(Jet j) {
+		String model = j.getModel();
+		String returnName = "";
+		int spacesNeeded = 0;
+		
+		if (model.length() < 5) { //if model length is less than 5, we need to preload the returnName with spaces.
+			spacesNeeded = model.length()%5;
+			for (int i = 0; i < spacesNeeded; i++) {
+				returnName += " ";
+			}
+		}
+		
+		for (int i = 0; i < (5-spacesNeeded); i++) {
+			returnName += model.charAt(i);
+		}
+		
+		
+		return returnName;
+	}
 }

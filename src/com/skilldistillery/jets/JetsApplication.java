@@ -8,7 +8,6 @@ public class JetsApplication {
 		Scanner kb = new Scanner(System.in);
 		MenuInterface myMenu = new MenuInterface(kb);
 		AirField myAirField = myMenu.createAirFieldObj();
-//		myAirField.displayAirfield();
 		boolean quitProgram;
 		
 		do {
