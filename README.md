@@ -20,6 +20,7 @@ This is Week 2 [Skill Distillery](http://skilldistillery.com) weekend homework.
 * Eclipse
 
 ###UML
+
 <dl>
 	<img src="https://github.com/Chioxin/JetsProject/blob/master/UMLJets.png?raw=true" ALIGN="right" alt="UML Diagram" width="400">
 </dl>
