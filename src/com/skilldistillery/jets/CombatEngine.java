@@ -9,7 +9,7 @@ public class CombatEngine {
 		String[] models = { "F-22 Raptor", "F-15 Eagle", "MiG-29", "Su-27", "Mirage 2000" };
 		this.enemyName = models[(int) (Math.random() * models.length)];
 		this.playerScore = 0;
-		this.enemyScore = 3;
+		this.enemyScore = 0;
 	}
 
 	public boolean performRound(boolean isPlayer, Jet playerJet, int playerChoice) {
@@ -125,6 +125,7 @@ public class CombatEngine {
 	}
 	
 	private void reportScore(String playerName) {
+		System.out.println();
 		System.out.println(playerName + " has scored " + playerScore + " of 3 hits!");
 		System.out.println(enemyName + " has scored " + enemyScore + " of 3 hits!");
 		System.out.println();

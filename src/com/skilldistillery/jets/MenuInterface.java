@@ -43,8 +43,8 @@ public class MenuInterface {
 				break;
 			case 2:
 				System.out.println();
+				System.out.println("*****  Taking all jets for a spin  *****>");
 				myAirField.flyAllJets();
-				System.out.println("*****  All jets have been taken out for a spin  *****>");
 				System.out.println();
 				break;
 			case 3:
@@ -61,14 +61,14 @@ public class MenuInterface {
 				break;
 			case 5:
 				System.out.println();
+				System.out.println("***** Loading all jets with Cargo Carriers *****");
 				myAirField.loadCargoPlanes();
-				System.out.println("***** All cargo planes loaded *****");
 				System.out.println();
 				break;
 			case 6:
 				System.out.println();
+				System.out.println("***** Alerting all Combat Ready jets *****");
 				myAirField.fightersDogFight();
-				System.out.println("***** All fighters have battled it out *****");
 				System.out.println();
 				break;
 			case 7:
@@ -346,7 +346,7 @@ public class MenuInterface {
 
 		if (model.length() < 5) { // if model length is less than 5, we need to preload the returnName with
 									// spaces.
-			spacesNeeded = model.length() % 5;
+			spacesNeeded = 5 - (model.length() % 5);
 			for (int i = 0; i < spacesNeeded; i++) {
 				returnName += " ";
 			}
