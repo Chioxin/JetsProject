@@ -21,7 +21,7 @@ This is Week 2 [Skill Distillery](http://skilldistillery.com) weekend homework.
 
 ###UML
 <dl>
-	<img src="https://github.com/Chioxin/JetsProject/blob/master/UMLJets.png?raw=true" ALIGN="right" alt="UML Diagram">
+	<img src="https://github.com/Chioxin/JetsProject/blob/master/UMLJets.png?raw=true" ALIGN="right" alt="UML Diagram" width="400">
 </dl>
 
 This is the UML we were given to follow. I did create a MenuInterface Class to handle inputs and displays for the user. A CombatEngine Class was also added to handle the mini game found in the program.
